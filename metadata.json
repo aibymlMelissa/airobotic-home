@@ -1,0 +1,5 @@
+{
+  "name": "AI Matter Coordinator Simulator",
+  "description": "A web-based simulator demonstrating an Edge AI Matter Coordinator that optimizes smart home devices for energy efficiency and cost savings using Gemini.",
+  "requestFramePermissions": []
+}
