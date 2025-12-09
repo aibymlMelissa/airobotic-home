@@ -10,12 +10,12 @@
   width: 8px;
 }
 .terminal-scroll::-webkit-scrollbar-track {
-  background: #1e293b;
+  background: #f8fafc;
 }
 .terminal-scroll::-webkit-scrollbar-thumb {
-  background: #475569;
+  background: #cbd5e1;
   border-radius: 4px;
 }
 .terminal-scroll::-webkit-scrollbar-thumb:hover {
-  background: #64748b;
+  background: #94a3b8;
 }

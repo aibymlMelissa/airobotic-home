@@ -235,12 +235,12 @@ export default function App() {
   const ControlsSection = () => (
     <div className="flex flex-col gap-6 pb-20 lg:pb-0">
       {/* Environment Card */}
-      <div className="bg-slate-900 border border-slate-800 rounded-xl p-5 shadow-lg relative overflow-hidden shrink-0">
-        <div className="absolute top-0 right-0 p-4 opacity-10">
+      <div className="bg-slate-50 border border-slate-200 rounded-xl p-5 shadow-md relative overflow-hidden shrink-0">
+        <div className="absolute top-0 right-0 p-4 opacity-5">
           <Activity size={100} />
         </div>
-        
-        <h2 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4 flex items-center gap-2">
+
+        <h2 className="text-xs font-bold text-slate-600 uppercase tracking-widest mb-4 flex items-center gap-2">
           <Settings size={14} /> Environment
         </h2>
 
@@ -248,25 +248,25 @@ export default function App() {
           {/* Time Control */}
           <div>
             <div className="flex justify-between text-sm mb-2">
-              <span className="flex items-center gap-2 text-slate-300">
+              <span className="flex items-center gap-2 text-slate-700">
                 <Clock size={16} /> Time
               </span>
-              <span className="font-mono text-primary-400 text-lg font-bold">
+              <span className="font-mono text-blue-600 text-lg font-bold">
                 {env.time.toString().padStart(2, '0')}:00
               </span>
             </div>
-            <input 
-              type="range" 
-              min="0" 
-              max="23" 
+            <input
+              type="range"
+              min="0"
+              max="23"
               value={env.time}
               onChange={(e) => setEnv({...env, time: parseInt(e.target.value)})}
-              className="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-primary-500"
+              className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-blue-600"
             />
             <div className="flex justify-between mt-2">
-                <button 
+                <button
                 onClick={() => setIsPlaying(!isPlaying)}
-                className="flex items-center gap-1 text-xs text-slate-400 hover:text-white transition-colors"
+                className="flex items-center gap-1 text-xs text-slate-600 hover:text-slate-900 transition-colors"
                 >
                   {isPlaying ? <PauseCircle size={14}/> : <PlayCircle size={14}/>}
                   {isPlaying ? 'PAUSE' : 'AUTO-PLAY'}
@@ -276,66 +276,66 @@ export default function App() {
 
           {/* Stats Grid */}
           <div className="grid grid-cols-2 gap-4">
-            <div className="bg-slate-950/50 p-3 rounded-lg border border-slate-800">
+            <div className="bg-white p-3 rounded-lg border border-slate-200 shadow-sm">
               <div className="text-xs text-slate-500 mb-1">Energy Rate</div>
-              <div className={`text-lg font-mono font-bold ${env.energyPrice > 0.3 ? 'text-red-400' : 'text-green-400'}`}>
+              <div className={`text-lg font-mono font-bold ${env.energyPrice > 0.3 ? 'text-red-600' : 'text-green-600'}`}>
                 ${env.energyPrice.toFixed(2)}
               </div>
-              <div className="text-[10px] text-slate-600">per kWh</div>
+              <div className="text-[10px] text-slate-400">per kWh</div>
             </div>
-            <div className="bg-slate-950/50 p-3 rounded-lg border border-slate-800">
+            <div className="bg-white p-3 rounded-lg border border-slate-200 shadow-sm">
               <div className="text-xs text-slate-500 mb-1">Total Savings</div>
-              <div className="text-lg font-mono font-bold text-success-500 flex items-center">
+              <div className="text-lg font-mono font-bold text-green-600 flex items-center">
                 <DollarSign size={14} />
                 {env.totalSavings.toFixed(2)}
               </div>
-              <div className="text-[10px] text-slate-600">This Session</div>
+              <div className="text-[10px] text-slate-400">This Session</div>
             </div>
           </div>
-          
-          <div className="flex items-center justify-between bg-slate-950/50 p-3 rounded-lg border border-slate-800">
+
+          <div className="flex items-center justify-between bg-white p-3 rounded-lg border border-slate-200 shadow-sm">
               <div className="flex items-center gap-2">
-                <Sun size={16} className="text-orange-400" />
-                <span className="text-sm text-slate-300">External Temp</span>
+                <Sun size={16} className="text-orange-500" />
+                <span className="text-sm text-slate-700">External Temp</span>
               </div>
-              <span className="font-mono font-bold">{env.temperature}°C</span>
+              <span className="font-mono font-bold text-slate-800">{env.temperature}°C</span>
           </div>
         </div>
       </div>
 
       {/* Scenario Injector */}
-      <div className="bg-slate-900 border border-slate-800 rounded-xl p-5 shadow-lg shrink-0">
-        <h2 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4">
+      <div className="bg-slate-50 border border-slate-200 rounded-xl p-5 shadow-md shrink-0">
+        <h2 className="text-xs font-bold text-slate-600 uppercase tracking-widest mb-4">
             Simulate Scenario
         </h2>
         <div className="grid grid-cols-1 gap-2">
-          <button 
+          <button
             onClick={() => handleScenarioInject('PEAK')}
-            className="w-full py-2 px-3 bg-slate-800 hover:bg-slate-700 border border-slate-700 rounded-md text-xs text-left transition-all flex items-center justify-between group"
+            className="w-full py-2 px-3 bg-white hover:bg-slate-100 border border-slate-200 rounded-md text-xs text-left transition-all flex items-center justify-between group text-slate-700"
           >
             <span>Trigger Peak Rates</span>
-            <span className="text-slate-500 group-hover:text-red-400">18:00</span>
+            <span className="text-slate-500 group-hover:text-red-600">18:00</span>
           </button>
-          <button 
+          <button
             onClick={() => handleScenarioInject('AWAY')}
-            className="w-full py-2 px-3 bg-slate-800 hover:bg-slate-700 border border-slate-700 rounded-md text-xs text-left transition-all flex items-center justify-between group"
+            className="w-full py-2 px-3 bg-white hover:bg-slate-100 border border-slate-200 rounded-md text-xs text-left transition-all flex items-center justify-between group text-slate-700"
           >
             <span>House Empty (Away Mode)</span>
-            <span className="text-slate-500 group-hover:text-blue-400">Auto</span>
+            <span className="text-slate-500 group-hover:text-blue-600">Auto</span>
           </button>
-          <button 
+          <button
             onClick={() => handleScenarioInject('MORNING')}
-            className="w-full py-2 px-3 bg-slate-800 hover:bg-slate-700 border border-slate-700 rounded-md text-xs text-left transition-all flex items-center justify-between group"
+            className="w-full py-2 px-3 bg-white hover:bg-slate-100 border border-slate-200 rounded-md text-xs text-left transition-all flex items-center justify-between group text-slate-700"
           >
             <span>Morning Routine</span>
-            <span className="text-slate-500 group-hover:text-yellow-400">07:00</span>
+            <span className="text-slate-500 group-hover:text-yellow-600">07:00</span>
           </button>
         </div>
       </div>
-      
+
       {/* Energy Graph */}
-      <div className="bg-slate-900 border border-slate-800 rounded-xl p-5 shadow-lg flex-1 min-h-[250px] lg:min-h-[200px] flex flex-col shrink-0">
-          <h2 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">
+      <div className="bg-slate-50 border border-slate-200 rounded-xl p-5 shadow-md flex-1 min-h-[250px] lg:min-h-[200px] flex flex-col shrink-0">
+          <h2 className="text-xs font-bold text-slate-600 uppercase tracking-widest mb-2">
             Cost Forecast (24h)
         </h2>
         <div className="flex-1 w-full -ml-4">
@@ -349,16 +349,16 @@ export default function App() {
   const DevicesSection = () => (
     <div className="flex flex-col pb-20 lg:pb-0">
         <div className="mb-4 flex items-center justify-between shrink-0">
-          <h2 className="text-xl font-bold text-white">My Home</h2>
+          <h2 className="text-xl font-bold text-slate-800">My Home</h2>
           <div className="flex items-center gap-2">
             <button
               onClick={() => setActiveTab('floorplan')}
-              className="hidden lg:flex items-center gap-1 text-xs px-3 py-1.5 rounded bg-slate-800 text-slate-300 border border-slate-700 hover:bg-slate-700 transition-colors"
+              className="hidden lg:flex items-center gap-1 text-xs px-3 py-1.5 rounded bg-slate-100 text-slate-700 border border-slate-200 hover:bg-slate-200 transition-colors"
             >
               <Map size={14} />
               Floor Plan
             </button>
-            <div className="text-xs px-2 py-1 rounded bg-slate-800 text-slate-400 border border-slate-700">
+            <div className="text-xs px-2 py-1 rounded bg-slate-100 text-slate-600 border border-slate-200">
               {devices.filter(d => d.isOn).length} Active
             </div>
           </div>
@@ -375,8 +375,8 @@ export default function App() {
             />
           ))}
           {/* Add a dummy card to show expandability */}
-          <div className="border border-dashed border-slate-800 rounded-lg flex items-center justify-center p-3 text-slate-600 hover:text-slate-500 hover:border-slate-700 transition-colors cursor-pointer group">
-            <div className="w-6 h-6 rounded-full bg-slate-900 flex items-center justify-center group-hover:bg-slate-800 mr-2">
+          <div className="border border-dashed border-slate-300 rounded-lg flex items-center justify-center p-3 text-slate-500 hover:text-slate-600 hover:border-slate-400 transition-colors cursor-pointer group">
+            <div className="w-6 h-6 rounded-full bg-slate-100 flex items-center justify-center group-hover:bg-slate-200 mr-2">
               <span className="text-sm">+</span>
             </div>
             <span className="text-xs font-semibold">Add Device</span>
@@ -390,10 +390,10 @@ export default function App() {
     <div className="flex flex-col gap-4 pb-20 lg:pb-0 h-full">
       {/* Header with Back Button */}
       <div className="flex items-center justify-between mb-2">
-        <h2 className="text-xl font-bold text-white">Floor Plan View</h2>
+        <h2 className="text-xl font-bold text-slate-800">Floor Plan View</h2>
         <button
           onClick={() => setActiveTab('home')}
-          className="hidden lg:flex items-center gap-1 text-xs px-3 py-1.5 rounded bg-slate-800 text-slate-300 border border-slate-700 hover:bg-slate-700 transition-colors"
+          className="hidden lg:flex items-center gap-1 text-xs px-3 py-1.5 rounded bg-slate-100 text-slate-700 border border-slate-200 hover:bg-slate-200 transition-colors"
         >
           <Home size={14} />
           Back to Devices
@@ -401,8 +401,8 @@ export default function App() {
       </div>
 
       {/* FloorPlan Selector */}
-      <div className="bg-slate-900 border border-slate-800 rounded-xl p-4 shadow-lg shrink-0">
-        <h2 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">
+      <div className="bg-slate-50 border border-slate-200 rounded-xl p-4 shadow-md shrink-0">
+        <h2 className="text-xs font-bold text-slate-600 uppercase tracking-widest mb-3">
           Select Floor Plan
         </h2>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
@@ -413,8 +413,8 @@ export default function App() {
               className={`
                 p-2 rounded-lg text-xs font-medium transition-all border
                 ${selectedFloorPlan?.id === plan.id
-                  ? 'bg-primary-600 text-white border-primary-500'
-                  : 'bg-slate-800 text-slate-300 border-slate-700 hover:bg-slate-700'
+                  ? 'bg-blue-600 text-white border-blue-500'
+                  : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-100'
                 }
               `}
             >
@@ -436,8 +436,8 @@ export default function App() {
       </div>
 
       {/* Device List for Positioning */}
-      <div className="bg-slate-900 border border-slate-800 rounded-xl p-4 shadow-lg shrink-0">
-        <h3 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">
+      <div className="bg-slate-50 border border-slate-200 rounded-xl p-4 shadow-md shrink-0">
+        <h3 className="text-xs font-bold text-slate-600 uppercase tracking-widest mb-3">
           Click to Place on Floor Plan
         </h3>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-2 max-h-40 overflow-y-auto">
@@ -451,8 +451,8 @@ export default function App() {
               className={`
                 p-2 rounded-lg text-xs text-left transition-all border
                 ${device.position
-                  ? 'bg-green-900/30 border-green-700 text-green-300'
-                  : 'bg-slate-800 border-slate-700 text-slate-300 hover:bg-slate-700'
+                  ? 'bg-green-100 border-green-400 text-green-700'
+                  : 'bg-white border-slate-200 text-slate-700 hover:bg-slate-100'
                 }
               `}
             >
@@ -469,21 +469,21 @@ export default function App() {
   const AiSection = () => (
     <div className="flex flex-col gap-4 pb-20 lg:pb-0">
        {/* Terminal/Logs */}
-       <div className="min-h-[300px] lg:min-h-[400px] bg-slate-950 rounded-xl shadow-lg flex flex-col border border-slate-800">
+       <div className="min-h-[300px] lg:min-h-[400px] bg-slate-50 rounded-xl shadow-md flex flex-col border border-slate-200">
           <ConsoleLog logs={logs} />
        </div>
 
        {/* Chat Interface */}
-       <div className="bg-slate-900 border border-slate-800 rounded-xl p-4 shadow-[0_-5px_20px_rgba(0,0,0,0.3)] shrink-0">
+       <div className="bg-slate-50 border border-slate-200 rounded-xl p-4 shadow-md shrink-0">
          <div className="mb-3 flex items-center justify-between">
            <div>
-             <h3 className="text-sm font-semibold text-white">Voice Command</h3>
-             <p className="text-xs text-slate-400">
+             <h3 className="text-sm font-semibold text-slate-800">Voice Command</h3>
+             <p className="text-xs text-slate-600">
                {isListening ? '🎤 Listening...' : 'Type or speak your command'}
              </p>
            </div>
            {!isSupported && (
-             <span className="text-xs text-orange-400">Speech not supported</span>
+             <span className="text-xs text-orange-600">Speech not supported</span>
            )}
          </div>
          <form onSubmit={handleCommandSubmit} className="relative">
@@ -499,10 +499,10 @@ export default function App() {
                  : "e.g., 'I want to watch a movie'"
              }
              disabled={isProcessing}
-             className={`w-full bg-slate-950 border text-sm text-white rounded-lg pl-4 pr-24 py-3 focus:outline-none focus:ring-1 transition-all disabled:opacity-50 ${
+             className={`w-full bg-white border text-sm text-slate-800 rounded-lg pl-4 pr-24 py-3 focus:outline-none focus:ring-1 transition-all disabled:opacity-50 ${
                isListening
                  ? 'border-red-500 focus:border-red-400 focus:ring-red-500'
-                 : 'border-slate-700 focus:border-primary-500 focus:ring-primary-500'
+                 : 'border-slate-300 focus:border-blue-500 focus:ring-blue-500'
              }`}
            />
 
@@ -515,7 +515,7 @@ export default function App() {
                className={`absolute right-14 top-2 p-1.5 rounded-md transition-all disabled:opacity-50 ${
                  isListening
                    ? 'bg-red-600 hover:bg-red-500 text-white animate-pulse'
-                   : 'bg-slate-800 hover:bg-slate-700 text-slate-300'
+                   : 'bg-slate-200 hover:bg-slate-300 text-slate-700'
                }`}
                title={isListening ? 'Stop listening' : 'Start voice input'}
              >
@@ -527,7 +527,7 @@ export default function App() {
            <button
              type="submit"
              disabled={!input.trim() || isProcessing}
-             className="absolute right-2 top-2 p-1.5 bg-primary-600 hover:bg-primary-500 text-white rounded-md transition-colors disabled:bg-slate-800 disabled:text-slate-500"
+             className="absolute right-2 top-2 p-1.5 bg-blue-600 hover:bg-blue-500 text-white rounded-md transition-colors disabled:bg-slate-300 disabled:text-slate-500"
            >
              {isProcessing ? (
                <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
@@ -544,7 +544,7 @@ export default function App() {
                 e.target.value = ''; // Reset dropdown after selection
               }
             }}
-            className="w-full bg-slate-800 border border-slate-700 text-slate-300 text-xs px-3 py-2 rounded-lg hover:bg-slate-700 focus:outline-none focus:ring-1 focus:ring-primary-500 focus:border-primary-500 transition-all cursor-pointer"
+            className="w-full bg-white border border-slate-300 text-slate-700 text-xs px-3 py-2 rounded-lg hover:bg-slate-100 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 transition-all cursor-pointer"
             defaultValue=""
           >
             <option value="" disabled>📋 Select a pre-made voice command...</option>
@@ -590,33 +590,33 @@ export default function App() {
   );
 
   return (
-    <div className="h-screen bg-slate-950 text-slate-200 flex flex-col font-sans overflow-hidden">
+    <div className="h-screen bg-white text-slate-700 flex flex-col font-sans overflow-hidden">
 
       {/* HEADER */}
-      <header className="h-16 border-b border-slate-800 bg-slate-950/80 backdrop-blur-md flex items-center justify-between px-4 md:px-6 sticky top-0 z-50 shrink-0">
+      <header className="h-16 border-b border-slate-200 bg-white/80 backdrop-blur-md flex items-center justify-between px-4 md:px-6 sticky top-0 z-50 shrink-0">
         <div className="flex items-center gap-3">
-          <div className="p-2 bg-primary-600 rounded-lg shadow-[0_0_15px_rgba(37,99,235,0.5)]">
+          <div className="p-2 bg-blue-600 rounded-lg shadow-[0_0_15px_rgba(37,99,235,0.3)]">
             <Zap className="text-white fill-current" size={20} />
           </div>
           <div>
-            <h1 className="text-lg font-bold tracking-tight text-white hidden md:block">AI Matter Coordinator</h1>
-            <h1 className="text-lg font-bold tracking-tight text-white md:hidden">AI Home</h1>
-            <p className="text-xs text-slate-400">Local Simulation • v1.2.0</p>
+            <h1 className="text-lg font-bold tracking-tight text-slate-800 hidden md:block">AI Matter Coordinator</h1>
+            <h1 className="text-lg font-bold tracking-tight text-slate-800 md:hidden">AI Home</h1>
+            <p className="text-xs text-slate-500">Local Simulation • v1.2.0</p>
           </div>
         </div>
 
         <div className="flex items-center gap-6">
-           <div className="hidden md:flex items-center gap-2 bg-slate-900/50 py-1.5 px-3 rounded-full border border-slate-800">
-             <ShieldCheck size={14} className="text-green-500" />
-             <span className="text-xs font-mono text-green-500">SECURE</span>
+           <div className="hidden md:flex items-center gap-2 bg-slate-50 py-1.5 px-3 rounded-full border border-slate-200">
+             <ShieldCheck size={14} className="text-green-600" />
+             <span className="text-xs font-mono text-green-600">SECURE</span>
            </div>
-           <div className="flex items-center gap-2 bg-slate-900/50 py-1.5 px-3 rounded-full border border-slate-800">
+           <div className="flex items-center gap-2 bg-slate-50 py-1.5 px-3 rounded-full border border-slate-200">
               <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-primary-500"></span>
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-600"></span>
               </span>
-             <span className="text-xs font-mono text-primary-400 hidden md:inline">GEMINI 2.5 CONNECTED</span>
-             <span className="text-xs font-mono text-primary-400 md:hidden">ONLINE</span>
+             <span className="text-xs font-mono text-blue-600 hidden md:inline">GEMINI 2.5 CONNECTED</span>
+             <span className="text-xs font-mono text-blue-600 md:hidden">ONLINE</span>
            </div>
         </div>
       </header>
@@ -643,11 +643,11 @@ export default function App() {
       </main>
 
       {/* MOBILE BOTTOM NAVIGATION */}
-      <nav className="lg:hidden fixed bottom-0 left-0 right-0 bg-slate-950 border-t border-slate-800 pb-safe z-50">
+      <nav className="lg:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-slate-200 pb-safe z-50">
         <div className="flex justify-around items-center h-16">
           <button
             onClick={() => setActiveTab('controls')}
-            className={`flex flex-col items-center justify-center w-full h-full space-y-1 ${activeTab === 'controls' ? 'text-primary-500' : 'text-slate-500 hover:text-slate-300'}`}
+            className={`flex flex-col items-center justify-center w-full h-full space-y-1 ${activeTab === 'controls' ? 'text-blue-600' : 'text-slate-500 hover:text-slate-700'}`}
           >
             <Sliders size={18} />
             <span className="text-[10px] font-medium">Controls</span>
@@ -655,7 +655,7 @@ export default function App() {
 
           <button
             onClick={() => setActiveTab('home')}
-            className={`flex flex-col items-center justify-center w-full h-full space-y-1 ${activeTab === 'home' ? 'text-primary-500' : 'text-slate-500 hover:text-slate-300'}`}
+            className={`flex flex-col items-center justify-center w-full h-full space-y-1 ${activeTab === 'home' ? 'text-blue-600' : 'text-slate-500 hover:text-slate-700'}`}
           >
             <Home size={18} />
             <span className="text-[10px] font-medium">Devices</span>
@@ -663,7 +663,7 @@ export default function App() {
 
           <button
             onClick={() => setActiveTab('floorplan')}
-            className={`flex flex-col items-center justify-center w-full h-full space-y-1 ${activeTab === 'floorplan' ? 'text-primary-500' : 'text-slate-500 hover:text-slate-300'}`}
+            className={`flex flex-col items-center justify-center w-full h-full space-y-1 ${activeTab === 'floorplan' ? 'text-blue-600' : 'text-slate-500 hover:text-slate-700'}`}
           >
             <Map size={18} />
             <span className="text-[10px] font-medium">Floor Plan</span>
@@ -671,7 +671,7 @@ export default function App() {
 
           <button
             onClick={() => setActiveTab('ai')}
-            className={`flex flex-col items-center justify-center w-full h-full space-y-1 ${activeTab === 'ai' ? 'text-primary-500' : 'text-slate-500 hover:text-slate-300'}`}
+            className={`flex flex-col items-center justify-center w-full h-full space-y-1 ${activeTab === 'ai' ? 'text-blue-600' : 'text-slate-500 hover:text-slate-700'}`}
           >
             <MessageSquare size={18} />
             <span className="text-[10px] font-medium">AI Log</span>

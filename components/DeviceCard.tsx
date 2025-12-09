@@ -42,21 +42,21 @@ const DeviceCard: React.FC<DeviceCardProps> = ({ device, onToggle, isExpanded, o
         relative rounded-lg border transition-all duration-300
         ${isExpanded ? 'col-span-2' : ''}
         ${device.isOn
-          ? 'bg-slate-800 border-primary-500/50 shadow-[0_0_10px_rgba(59,130,246,0.15)]'
-          : 'bg-slate-900 border-slate-800 opacity-70'}
+          ? 'bg-white border-blue-300 shadow-[0_0_10px_rgba(59,130,246,0.15)]'
+          : 'bg-slate-50 border-slate-200 opacity-70'}
       `}
     >
       {/* Compact View */}
       {!isExpanded ? (
         <div
           onClick={() => onExpandToggle(device.id)}
-          className="p-2 cursor-pointer hover:bg-slate-700/30 rounded-lg transition-colors"
+          className="p-2 cursor-pointer hover:bg-slate-100 rounded-lg transition-colors"
         >
           <div className="flex flex-col items-center gap-1.5">
-            <div className="p-2 rounded-md bg-slate-950 border border-slate-800">
+            <div className="p-2 rounded-md bg-slate-100 border border-slate-200">
               {getIcon()}
             </div>
-            <h3 className="font-medium text-xs text-slate-100 text-center truncate w-full px-1" title={device.name}>
+            <h3 className="font-medium text-xs text-slate-800 text-center truncate w-full px-1" title={device.name}>
               {device.name}
             </h3>
           </div>
@@ -66,7 +66,7 @@ const DeviceCard: React.FC<DeviceCardProps> = ({ device, onToggle, isExpanded, o
         <div className="p-3">
           <div className="flex justify-between items-start mb-3">
             <div
-              className="p-2 rounded-lg bg-slate-950 border border-slate-800 cursor-pointer"
+              className="p-2 rounded-lg bg-slate-100 border border-slate-200 cursor-pointer"
               onClick={() => onExpandToggle(device.id)}
             >
               {getIcon()}
@@ -79,7 +79,7 @@ const DeviceCard: React.FC<DeviceCardProps> = ({ device, onToggle, isExpanded, o
                 }}
                 className={`
                   p-2 rounded-full transition-colors
-                  ${device.isOn ? 'bg-primary-600 hover:bg-primary-500 text-white' : 'bg-slate-800 hover:bg-slate-700 text-slate-400'}
+                  ${device.isOn ? 'bg-blue-600 hover:bg-blue-500 text-white' : 'bg-slate-200 hover:bg-slate-300 text-slate-600'}
                 `}
               >
                 <Power size={16} />
@@ -88,14 +88,14 @@ const DeviceCard: React.FC<DeviceCardProps> = ({ device, onToggle, isExpanded, o
           </div>
 
           <div className="mb-3">
-            <h3 className="font-semibold text-slate-100 mb-1">{device.name}</h3>
-            <p className="text-xs text-slate-400 uppercase tracking-wider">{device.location}</p>
+            <h3 className="font-semibold text-slate-800 mb-1">{device.name}</h3>
+            <p className="text-xs text-slate-600 uppercase tracking-wider">{device.location}</p>
           </div>
 
           <div className="space-y-2 text-xs">
             <div className="flex justify-between items-center">
               <span className="text-slate-500">Status:</span>
-              <span className={`font-medium ${device.isOn ? 'text-green-400' : 'text-slate-400'}`}>
+              <span className={`font-medium ${device.isOn ? 'text-green-600' : 'text-slate-500'}`}>
                 {getStatusText()}
               </span>
             </div>
@@ -103,7 +103,7 @@ const DeviceCard: React.FC<DeviceCardProps> = ({ device, onToggle, isExpanded, o
             {device.value !== undefined && (
               <div className="flex justify-between items-center">
                 <span className="text-slate-500">Value:</span>
-                <span className="font-mono text-primary-400">
+                <span className="font-mono text-blue-600">
                   {device.value}{device.unit}
                 </span>
               </div>
@@ -111,7 +111,7 @@ const DeviceCard: React.FC<DeviceCardProps> = ({ device, onToggle, isExpanded, o
 
             <div className="flex justify-between items-center">
               <span className="text-slate-500">Power:</span>
-              <span className="font-mono text-slate-300">{device.energyConsumption}W</span>
+              <span className="font-mono text-slate-700">{device.energyConsumption}W</span>
             </div>
           </div>
         </div>
